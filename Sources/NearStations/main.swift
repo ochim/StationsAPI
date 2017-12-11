@@ -6,10 +6,17 @@ func requestDetail(for request: Request) throws -> Data {
     request.headers.forEach {
         header[$0.key.description] = $0.value
     }
+    var items = [String:String]()
+    if let query = request.url.query {
+        let outer = query.split(separator: "&")
+        for str in outer {
+            let inner = str.split(separator: "=")
+            items[inner[0]] = inner[1]
+        }
+    }
+    let result = Station().getNearestStation(lat: atof(items["lat"]), lng: atof(items["lnt"]))
     let json: [String: Any] = [
-        "path": request.path ?? "/",
-        "params": request.params ?? [:],
-        "header": header
+        "result": result
     ]
     return try JSONSerialization.data(withJSONObject: json, options: [])
 }

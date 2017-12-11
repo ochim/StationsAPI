@@ -2,12 +2,12 @@ name: NearStations
 service: aws
 aws:
    credential:
-     access_key_id: AKIAJKHWW2ZFCI3JYI6A
-     secret_access_key: 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
-   region: us-east-1
+     access_key_id: xxxxxxxxxxxxxxxxxxxxxxxxxx
+     secret_access_key: xxxxxxxxxxxxxxxxxxxxxxxxxx
+    region: us-east-1
   lambda:
     bucket: hexaville-nearstations-pglda-bucket
-#    role: xxxxxxxxxxxxxxxxxxxxxxxxxx
+    role: xxxxxxxxxxxxxxxxxxxxxxxxxx
 #     vpc:
 #       subnetIds:
 #         - xxxxxx
@@ -15,9 +15,9 @@ aws:
 #       securityGroupIds:
 #         - xxxxxx
 #         - xxxxxx
-# build:
-#   nocache: false
+build:
+   nocache: false
 swift:
   version: 4.0
-#   build:
-#     configuration: release # default is debug
+  build:
+     configuration: release # default is debug
