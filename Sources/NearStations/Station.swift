@@ -15,8 +15,8 @@ struct Station {
         let (x2, y2, z2) = rectangularCoordinateSystem(lat:lat2, lng:lng2)
         return Re * acos(x1*x2 + y1*y2 + z1*z2)
     }
-
-    func getNearestStation (lat: Double, lng: Double) -> [[String:String]] {
+    /** 付近の駅を取得 **/
+    func getNearStations (lat: Double, lng: Double) -> [[String:String]] {
         
         let stations = Convert.convertCSV()
         

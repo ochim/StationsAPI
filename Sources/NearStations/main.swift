@@ -14,10 +14,18 @@ func requestDetail(for request: Request) throws -> Data {
             items[inner[0]] = inner[1]
         }
     }
-    let result = Station().getNearestStation(lat: atof(items["lat"]), lng: atof(items["lnt"]))
-    let json: [String: Any] = [
-        "result": result
-    ]
+
+    var json: [String:Any] = [:]
+    if let lat = items["lat"], let lnt = items["lnt"] {
+        let result = Station().getNearStations(lat: atof(lat), lng: atof(lnt))
+        json = [
+            "result": result
+        ]
+    } else {
+        json = [
+            "error": "パラメータ不正"
+        ]
+    }
     return try JSONSerialization.data(withJSONObject: json, options: [])
 }
 
@@ -64,7 +72,7 @@ router.use(.get, "/") { request, context in
     return Response(headers: ["Content-Type": "text/html"], body: html)
 }
 
-router.use(.get, "/hello") { request, context in
+router.use(.get, "/Stations") { request, context in
     return try Response(headers: ["Content-Type": "application/json"], body: requestDetail(for: request))
 }
 
