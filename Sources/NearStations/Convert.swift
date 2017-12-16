@@ -17,16 +17,17 @@ struct Convert {
             let csvStr = try String(contentsOfFile:csvPath, encoding:String.Encoding.utf8)
             
             var result: [[String]] = []
-            let rows = csvStr.components(separatedBy: .newlines)
+            var rows = csvStr.components(separatedBy: .newlines)
+            rows.remove(at: 0)
+            rows.remove(at: rows.count-1)
+            
             for row in rows {
                 let columns = row.components(separatedBy: ",")
                 result.append(columns)
             }
-            result.remove(at: result.count-1)
-
+ 
             return result
             
-
         } catch {
             return [[]]
         }
