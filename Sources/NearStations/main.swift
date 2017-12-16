@@ -11,12 +11,14 @@ func requestDetail(for request: Request) throws -> Data {
         let outer = query.split(separator: "&")
         for str in outer {
             let inner = str.split(separator: "=")
-            items[inner[0]] = inner[1]
+            if (inner.count == 2){
+                items[inner[0]] = inner[1]
+            }
         }
     }
 
     var json: [String:Any] = [:]
-    if let lat = items["lat"], let lnt = items["lnt"] {
+    if let lat = items["lat"], let lnt = items["lng"] {
         let result = Station().getNearStations(lat: atof(lat), lng: atof(lnt))
         json = [
             "result": result

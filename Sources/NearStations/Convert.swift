@@ -28,7 +28,7 @@ struct Convert {
             
 
         } catch {
-            return []
+            return [[]]
         }
     }
 }

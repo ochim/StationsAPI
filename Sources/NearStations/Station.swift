@@ -9,13 +9,6 @@ import Foundation
 
 struct Station {
 
-    func calcDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double) -> Double{
-        let Re = 6378.137 // 地球の半径
-        let (x1, y1, z1) = rectangularCoordinateSystem(lat:lat1, lng:lng1)
-        let (x2, y2, z2) = rectangularCoordinateSystem(lat:lat2, lng:lng2)
-        return Re * acos(x1*x2 + y1*y2 + z1*z2)
-    }
-    /** 付近の駅を取得 **/
     func getNearStations (lat: Double, lng: Double) -> [[String:String]] {
         
         let stations = Convert.convertCSV()
@@ -30,6 +23,13 @@ struct Station {
         }
         array = array.sorted(by: { $0["km"]! < $1["km"]! })
         return array[0...2].map{$0}
+    }
+
+    func calcDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double) -> Double{
+        let Re = 6378.137 // 地球の半径(km)
+        let (x1, y1, z1) = rectangularCoordinateSystem(lat:lat1, lng:lng1)
+        let (x2, y2, z2) = rectangularCoordinateSystem(lat:lat2, lng:lng2)
+        return Re * acos(x1*x2 + y1*y2 + z1*z2)
     }
     
     func radians (deg: Double) -> Double {
