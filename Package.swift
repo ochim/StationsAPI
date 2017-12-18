@@ -7,6 +7,7 @@ let package = Package(
     name: "NearStations",
     dependencies: [
         .package(url: "https://github.com/noppoMan/HexavilleFramework.git", from: "0.1.0"),
+        .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.11.4")
     ],
     targets: [
         .target(name: "NearStations", dependencies: ["HexavilleFramework"]),
