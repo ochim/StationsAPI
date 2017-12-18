@@ -8,6 +8,8 @@ aws:
   lambda:
      bucket: hexaville-nearstations-pglda-bucket
      role: xxxxxxxxxxxxxxxxxxxxxxxxxx
+     timeout: 10
+     memory: 256
 #     vpc:
 #       subnetIds:
 #         - xxxxxx
